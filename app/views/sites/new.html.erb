@@ -1,0 +1,25 @@
+<h2><p>Your site id is: <%= @site.id %> </p></h2>
+
+<h3>Copy and Paste the JavaScript snippet between &lt;head&gt; , &lt;/head&gt; tag </h3><br><br>
+
+&lt;script type="text/javascript"&gt;<br><br>
+  
+	var enter_time = new Date().getTime()/1000;<br><br>
+ 
+	window.onunload=sendPOSTInfo;<br><br>
+	
+	function sendPOSTInfo(){<br>
+		var xhr = new XMLHttpRequest();<br>
+		xhr.open('POST',"http://vast-plateau-9627.herokuapp.com/sites" , false);<br>
+		var siteURL = window.location.protocol + "//" + window.location.host;<br>
+		var sitePath = window.location.pathname;<br>
+		var id = <%= @site.id %><br>
+		var leave_time = new Date().getTime()/1000;<br>
+		var params ="id="+id+"&"+"siteURL="+siteURL+"&"+"sitePath="+sitePath+"&"+"enter_time="+enter_time+"&"+"leave_time="+leave_time;<br>  
+		xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");<br>
+		xhr.send(params);<br>
+	}<br>
+&lt;/script&gt;
+<br><br>
+<%= link_to "Back", index_sites_path %> 
+ 

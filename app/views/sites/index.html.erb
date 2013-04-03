@@ -1,0 +1,29 @@
+<h2>Welcome to Andrew's Analytics Website!!</h2>
+
+<h4><%= link_to 'If you are new to the Analytics service, Click Here!!', new_sites_path %> <br><br>
+
+<table border="1" cellspacing="3">
+  <tr>
+    <th>ID</th>
+	<th>SiteURL</th>
+    <th>Visit Count</th>
+	<th>Duration(s)</th>
+	<th>Average Duration(s)</th>
+  </tr>
+
+<% @sites.each do |site| %>
+<% if site.visit_counts != 0 %>
+  <tr>
+    <td><%= site.id %></td>
+    <td><%= site.url %></td>
+	<td align='center'><%= site.visit_counts %></td>
+	<td align='center'><%= site.duration %></td>
+	<td align='center'><%= site.duration/site.visit_counts %></td>
+	<td><%= link_to "Details", show_sites_path(site) %></td>
+  </tr>
+<% end %>
+<% end %>
+</table>
+
+<br />
+

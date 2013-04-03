@@ -1,0 +1,26 @@
+<h2> Details on "<%= @site.url %>"</h2>
+
+<h3> total duration : <%= @site.duration %> <br> total visits: <%= @site.visit_counts %> </h3><br>
+
+
+<table border="1" cellspacing="3">
+  <tr>
+	<th>Page ID</th>
+	<th>Page Path</th>
+	<th>Visit Count</th>
+	<th>Duration(s)</th>
+  </tr>
+
+<% @pages.each do |page| %>
+   <tr>
+	<td align='center'><%= page.id %></td>
+    <td align='center'><%= page.URL %></td>
+	<td align='center'><%= page.visit_counts %></td>
+    <td align='center'><%= page.duration %></td>
+	<td><%= link_to('Details', :controller => 'page', :action =>'show', :num => page.id) %></td>
+  </tr>
+<% end %>
+</table><br>
+
+
+<%= link_to "Back", index_sites_path %> 
